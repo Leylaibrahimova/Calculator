@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulyator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .calculator {
+        width: 250px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    input[type="button"] {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        font-size: 20px;
+    }
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+        font-size: 20px;
+        box-sizing: border-box;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+</head>
+<body>
+<div class="calculator">
+    <!-- Ekran için bir input alanı -->
+    <input type="text" id="display" readonly>
+    <!-- Rakamlar ve işlem düğmeleri için sıralar -->
+    <div class="row">
+        <!-- 1, 2 ve 3 rakamları ile bölme işlemi düğmesi -->
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="/" onclick="addToDisplay('/')">
+    </div>
+    <div class="row">
+        <!-- 4, 5 ve 6 rakamları ile çarpma işlemi düğmesi -->
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="addToDisplay('6')">
+        <input type="button" value="*" onclick="addToDisplay('*')">
+    </div>
+    <div class="row">
+        <!-- 7, 8 ve 9 rakamları ile çıkarma işlemi düğmesi -->
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="-" onclick="addToDisplay('-')">
+    </div>
+    <div class="row">
+        <!-- Temizleme, 0, eşittir ve toplama işlemi düğmeleri -->
+        <input type="button" value="C" onclick="clearDisplay()">
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="=" onclick="calculate()">
+        <input type="button" value="+" onclick="addToDisplay('+')">
+    </div>
+</div>
+
+<script>
+    function addToDisplay(value) {
+        // Kullanıcının girdiği değeri ekrana ekler
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        // Ekranı temizle
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        // Hesaplama yapar
+        var displayValue = document.getElementById('display').value;
+        try {
+            var result = eval(displayValue);
+            // Hesaplama sonucunu ekrana yazdırır
+            if (!isNaN(result)) {
+                document.getElementById('display').value = result;
+            } else {
+                // Geçersiz giriş uyarısı
+                alert("Geçersiz giriş!");
+                clearDisplay();
+            }
+        } catch (error) {
+            // Hesaplama hatası uyarısı
+            alert("Hesaplama hatası!");
+            clearDisplay();
+        }
+    }
+</script>
+
+</body>
+</html>
