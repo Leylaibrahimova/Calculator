@@ -1,0 +1,15 @@
+.seat {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc; /* Gri renk */
+    border: 1px solid #999;
+    margin: 5px;
+    float: left;
+    cursor: pointer;
+  }
+  
+  .seat.selected {
+    background-color: #fff; /* Beyaz renk */
+    color: #000; /* Yazı rengi */
+  }
+  
